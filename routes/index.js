@@ -23,7 +23,6 @@ router.post(
     celebrity.name = req.body.name;
     celebrity.occupation = req.body.occupation;
     celebrity.catchPhrase = req.body.catchPhrase;
-    console.log(celebrity)
     try {
         await celebrity.save();
         res.redirect('/celebrities')
@@ -34,7 +33,11 @@ router.post(
 
 // celebrities page
 router.get("/celebrities", (req, res) => {
-  res.render("celebrities/celebritiesPage");
+  Celebrity.find()
+  .then(celebrities => {
+      res.render('celebrities/celebritiesPage', {celebrities});
+  })
+  .catch((err) => console.log('Something went wrong',err));
 });
     
 module.exports = router;
