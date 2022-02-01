@@ -3,6 +3,8 @@ const router = require("express").Router();
 //  getting the celebrity model
 const Celebrity = require("./../models/Celebrity.model");
 
+const Movie = require("./../models/Movie.model")
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
@@ -39,5 +41,24 @@ router.get("/celebrities", (req, res) => {
   })
   .catch((err) => console.log('Something went wrong',err));
 });
+
+
+// form for creating a celebrity
+router.get("/movies/create", (req, res) => {
+  res.render("movies/new-movie");
+});
     
+
+router.post(
+  '/movies/create',
+  async (req, res) => {
+  // const celebrity = new Movie();
+ console.log(req.body);
+  // try {
+  //     await celebrity.save();
+  //     res.redirect('/celebrities')
+  // } catch (error) {
+  //     res.render('/celebrities/new-celebrity');
+  // }
+})
 module.exports = router;
